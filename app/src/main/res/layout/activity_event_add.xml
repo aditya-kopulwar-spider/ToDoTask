@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".AddEventActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Title"
+        android:id="@+id/textView"
+        android:layout_below="@+id/cancel"
+        android:layout_alignLeft="@+id/eventTitle"
+        android:layout_alignStart="@+id/eventTitle"
+        android:layout_marginTop="40dp" />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventTitle"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Description"
+        android:id="@+id/textView2"
+        android:layout_above="@+id/eventDescription"
+        android:layout_alignLeft="@+id/eventTitle"
+        android:layout_alignStart="@+id/eventTitle" />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/eventDescription"
+        android:layout_marginBottom="70dp"
+        android:layout_above="@+id/pickTime"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pick_time"
+        android:onClick="showTimePickerDialog"
+        android:id="@+id/pickTime"
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/eventDescription"
+        android:layout_alignStart="@+id/eventDescription" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pick_date"
+        android:onClick="showDatePickerDialog"
+        android:id="@+id/pickDate"
+        android:layout_alignTop="@+id/pickTime"
+        android:layout_alignRight="@+id/eventDescription"
+        android:layout_alignEnd="@+id/eventDescription" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Event"
+        android:id="@+id/saveEvent"
+        android:layout_marginTop="23dp"
+        android:layout_alignParentTop="true"
+        android:onClick="addEvent"
+        android:layout_alignRight="@+id/eventTitle"
+        android:layout_alignEnd="@+id/eventTitle"
+        android:layout_marginRight="31dp"
+        android:layout_marginEnd="31dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:id="@+id/cancel"
+        android:layout_alignTop="@+id/saveEvent"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2"
+        android:onClick="ToDoListActivityCaller" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Image"
+        android:id="@+id/cameraButton"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/pickDate"
+        android:layout_toStartOf="@+id/pickDate"
+        android:onClick="launchCamera" />
+
+
+</RelativeLayout>
