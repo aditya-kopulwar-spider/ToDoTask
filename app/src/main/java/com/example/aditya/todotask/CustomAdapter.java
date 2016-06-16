@@ -15,6 +15,7 @@ import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 
+//Use Base adapter and overrides method by yourself
 public class CustomAdapter extends BaseAdapter {
     Realm realm = Realm.getDefaultInstance();
     private List<ToDoModel> toDoModels;

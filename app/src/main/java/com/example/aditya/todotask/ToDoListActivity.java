@@ -17,6 +17,7 @@ import io.realm.Realm;
 public class ToDoListActivity extends Activity {
 
 
+
     private CustomAdapter listAdapter;
 
     @Override
