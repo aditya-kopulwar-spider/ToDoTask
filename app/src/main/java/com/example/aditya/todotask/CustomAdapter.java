@@ -30,6 +30,7 @@ public class CustomAdapter extends BaseAdapter {
         return toDoModels.size();
     }
 
+    //Returns the todomodel object by passing the position number of click.
     @Override
     public ToDoModel getItem(int position) {
         return toDoModels.get(position);
