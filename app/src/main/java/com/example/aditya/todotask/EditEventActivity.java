@@ -34,7 +34,7 @@ public class EditEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_edit);
 
-        id = getIntent().getIntExtra("eventID",-1);
+        id = (int) getIntent().getLongExtra("eventID",-1);
 
         Realm realm = Realm.getDefaultInstance();
         final RealmQuery<ToDoModel> query = realm.where(ToDoModel.class);
@@ -53,10 +53,12 @@ public class EditEventActivity extends AppCompatActivity {
         eventImage.setImageBitmap(BitmapFactory.decodeFile(eventData.getImageURL()));
 
         TextView eventTime = (TextView)findViewById(R.id.eventTime);
-        eventTime.setText(eventData.getTime());
+        time = eventData.getTime();
+        eventTime.setText(time);
 
         TextView eventDate = (TextView)findViewById(R.id.eventDate);
-        eventDate.setText(eventData.getDate());
+        date = eventData.getDate();
+        eventDate.setText(date);
 
         final Calendar c = Calendar.getInstance();
         year = c.get(Calendar.YEAR);
@@ -85,6 +87,7 @@ public class EditEventActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int yearPicked, int monthPicked, int dayPicked) {
+
             year = yearPicked;
             month = monthPicked;
             day = dayPicked;
@@ -145,7 +148,7 @@ public class EditEventActivity extends AppCompatActivity {
 
     public void cancelAlarmService(View v){
         NotificationManager nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-        nm.cancel(getIntent().getExtras().getInt("alarmId",id));
+        nm.cancel((int) getIntent().getExtras().getLong("alarmId",id));
     }
 
     public void toDoListCaller(View view){

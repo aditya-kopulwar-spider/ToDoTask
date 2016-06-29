@@ -21,6 +21,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
 import io.realm.Realm;
 
 import com.example.aditya.todotask.Models.ToDoModel;
@@ -177,24 +179,31 @@ public class AddEventActivity extends AppCompatActivity {
     }*/
 
     public void addEvent(View v){
-        Realm realm = Realm.getDefaultInstance();
-        realm.executeTransaction(new Realm.Transaction(){
-            @Override
-            public void execute(Realm realm) {
-                ToDoModel toDoModel = realm.createObject(ToDoModel.class);
-                toDoModel.setTitle( ((EditText) findViewById(R.id.eventTitle)).getText().toString());
-                toDoModel.setDescription(((EditText) findViewById(R.id.eventDescription)).getText().toString());
-                nextID = (long) (realm.where(ToDoModel.class).max("id")) + 1;
+        if(((EditText) findViewById(R.id.eventTitle)).getText().toString().trim().isEmpty() ||
+                (((EditText) findViewById(R.id.eventDescription)).getText().toString()).trim().isEmpty()){
+            Toast.makeText(getApplicationContext(), "One of the field is empty", Toast.LENGTH_LONG).show();
+        }
+        else {
+            Realm realm = Realm.getDefaultInstance();
+            realm.executeTransaction(new Realm.Transaction(){
+                @Override
+                public void execute(Realm realm) {
+                    ToDoModel toDoModel = realm.createObject(ToDoModel.class);
+                    toDoModel.setTitle( ((EditText) findViewById(R.id.eventTitle)).getText().toString());
+                    toDoModel.setDescription(((EditText) findViewById(R.id.eventDescription)).getText().toString());
+                    nextID = (long) (realm.where(ToDoModel.class).max("id")) + 1;
 
-                // insert new value
-                toDoModel.setId(nextID);
-                toDoModel.setDate(date);
-                toDoModel.setTime(time);
-                toDoModel.setImageURL(imageURL);
-            }
-        });
-        setAlarm(v);
-        ToDoListActivityCaller(v);
+                    // insert new value
+                    toDoModel.setId(nextID);
+                    toDoModel.setDate(date);
+                    toDoModel.setTime(time);
+                    toDoModel.setImageURL(imageURL);
+                }
+            });
+            setAlarm(v);
+            ToDoListActivityCaller(v);
+        }
+
     }
 
 
@@ -214,7 +223,6 @@ public class AddEventActivity extends AppCompatActivity {
 
     public void ToDoListActivityCaller(View view){
         Intent i = new Intent(this,ToDoListActivity.class);
-
         startActivity(i);
     }
 }

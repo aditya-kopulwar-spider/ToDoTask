@@ -46,6 +46,9 @@ public class CustomAdapter extends BaseAdapter {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View customView = layoutInflater.inflate(R.layout.custom_event_row, parent, false);
 
+        ToDoModel m = new ToDoModel();
+        ToDoModel m1 = m;
+
         ToDoModel singleEvent = getItem(position);
 
         TextView title = (TextView) customView.findViewById(R.id.Title);

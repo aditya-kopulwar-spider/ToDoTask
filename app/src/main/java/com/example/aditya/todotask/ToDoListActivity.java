@@ -37,7 +37,6 @@ public class ToDoListActivity extends Activity {
                   new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                         long eventId = listAdapter.getItemId(position);
                         intent.putExtra("eventID", eventId);
                         startActivity(intent);
@@ -65,7 +64,6 @@ public class ToDoListActivity extends Activity {
                 final ToDoModel item = listAdapter.getItem(position);
                 int id = (int) item.getId();
                 realm.executeTransaction(new Realm.Transaction(){
-
                     @Override
                     public void execute(Realm realm) {
                         item.deleteFromRealm();
