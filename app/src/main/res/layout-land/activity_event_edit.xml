@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".EditEventActivity">
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventTitle"
+        android:maxLength="30"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/eventDescription"
+        android:layout_below="@+id/CameraButton"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/saveEvent"
+        android:layout_marginTop="15dp"
+        android:onClick="saveEvent"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/CameraButton"
+        android:layout_toStartOf="@+id/CameraButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:id="@+id/cancel"
+        android:onClick="cancelEventEditing"
+        android:layout_alignTop="@+id/saveEvent"
+        android:layout_toRightOf="@+id/textView4"
+        android:layout_toEndOf="@+id/textView4" />
+
+    <ImageView
+        android:layout_width="125dp"
+        android:layout_height="100dp"
+        android:id="@+id/eventImage"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/eventTitle"
+        android:layout_toEndOf="@+id/eventTitle"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/eventTime"
+        android:layout_marginBottom="14dp"
+        android:onClick="showTimePickerDialog"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/cancel"
+        android:layout_alignEnd="@+id/cancel" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/eventDate"
+        android:onClick="showDatePickerDialog"
+        android:layout_alignTop="@+id/eventTime"
+        android:layout_toLeftOf="@+id/CameraButton"
+        android:layout_toStartOf="@+id/CameraButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Take Photo"
+        android:onClick="relaunchCamera"
+        android:id="@+id/CameraButton"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_below="@+id/eventTitle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Title"
+        android:id="@+id/textView3"
+        android:layout_marginLeft="22dp"
+        android:layout_marginStart="22dp"
+        android:layout_below="@+id/cancel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Description"
+        android:id="@+id/textView4"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/eventTitle"
+        android:layout_alignStart="@+id/eventTitle" />
+
+</RelativeLayout>

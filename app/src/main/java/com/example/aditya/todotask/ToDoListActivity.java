@@ -89,8 +89,13 @@ public class ToDoListActivity extends Activity {
 
     public void onAddEventClick(View view){
         Intent i = new Intent(this,AddEventActivity.class);
-
         startActivity(i);
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
+    }
 }

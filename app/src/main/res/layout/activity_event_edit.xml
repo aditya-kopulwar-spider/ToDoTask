@@ -21,7 +21,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/eventTitle"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:maxLength="30"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -66,14 +67,15 @@
         android:layout_alignTop="@+id/saveEvent"
         android:layout_alignRight="@+id/textView2"
         android:layout_alignEnd="@+id/textView2"
-        android:onClick="toDoListCaller"/>
+        android:onClick="cancelEventEditing"/>
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/eventImage"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/eventTitle"
+        android:layout_alignStart="@+id/eventTitle" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -97,5 +99,15 @@
         android:layout_alignRight="@+id/eventDescription"
         android:layout_alignEnd="@+id/eventDescription"
         android:onClick="showDatePickerDialog" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Take Photo"
+        android:onClick="relaunchCamera"
+        android:id="@+id/CameraButton"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/eventDate"
+        android:layout_alignEnd="@+id/eventDate" />
 
 </RelativeLayout>

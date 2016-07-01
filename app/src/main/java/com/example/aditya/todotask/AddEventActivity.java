@@ -10,16 +10,20 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Scroller;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -34,10 +38,11 @@ import java.util.GregorianCalendar;
 
 public class AddEventActivity extends AppCompatActivity {
 
-    String date,time;
+    String date="YYYY/MM/DD";
+    String time="HH:MM";
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public int year, month, day, hour,minute;
-    String imageURL;
+    static String imageURL=null;
     long nextID;
 
 
@@ -51,6 +56,15 @@ public class AddEventActivity extends AppCompatActivity {
         day = c.get(Calendar.DAY_OF_MONTH);
         hour = c.get(Calendar.HOUR_OF_DAY);
         minute = c.get(Calendar.MINUTE);
+
+        EditText editText = (EditText)findViewById(R.id.eventDescription);
+        editText.setScroller(new Scroller(this));
+        editText.setMaxLines(2);
+        editText.setVerticalScrollBarEnabled(true);
+
+        ImageView imageView = (ImageView)findViewById(R.id.imageView);
+        imageView.setImageBitmap(BitmapFactory.decodeFile(imageURL));
+
 
         Button cameraButton = (Button)findViewById(R.id.cameraButton);
         if(!hasCamera())
@@ -83,6 +97,8 @@ public class AddEventActivity extends AppCompatActivity {
             File finalFile = new File(getRealPathFromURI(tempUri));
             imageURL = finalFile.toString();
 
+            ImageView imageView = (ImageView)findViewById(R.id.imageView);
+            imageView.setImageBitmap(BitmapFactory.decodeFile(imageURL));
         }
     }
 
@@ -159,7 +175,10 @@ public class AddEventActivity extends AppCompatActivity {
         public void onTimeSet(TimePicker view, int hourPicked, int minutePicked) {
             hour = hourPicked;
             minute = minutePicked;
-            time = (String.valueOf(hourPicked) + ':' + (String.valueOf(minutePicked)));
+            if (minutePicked<10)
+                time = (String.valueOf(hourPicked) + ':'+ '0' + (String.valueOf(minutePicked)));
+            else
+                time = (String.valueOf(hourPicked) + ':' + (String.valueOf(minutePicked)));
         }
     };
 
@@ -201,7 +220,7 @@ public class AddEventActivity extends AppCompatActivity {
                 }
             });
             setAlarm(v);
-            ToDoListActivityCaller(v);
+            ToDoListActivityCaller();
         }
 
     }
@@ -220,9 +239,18 @@ public class AddEventActivity extends AppCompatActivity {
         alarmManager.set(AlarmManager.RTC_WAKEUP,alarmTime, PendingIntent.getBroadcast(this,1,alarmIntent,PendingIntent.FLAG_UPDATE_CURRENT));
     }
 
+    public void cancelEventAdding(View view){
+        ToDoListActivityCaller();
+    }
 
-    public void ToDoListActivityCaller(View view){
+
+    public void ToDoListActivityCaller(){
         Intent i = new Intent(this,ToDoListActivity.class);
         startActivity(i);
+    }
+
+    @Override
+    public void onBackPressed() {
+        ToDoListActivityCaller();
     }
 }
